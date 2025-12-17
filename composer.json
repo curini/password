@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "curini/password",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": [
@@ -32,7 +32,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Curini\\Password\\": "src/"
         }
     },
     "scripts": {
@@ -75,7 +75,7 @@
         "laravel": {
             "dont-discover": [],
             "providers": [
-                "App\\Providers\\AppAuthProvider"
+                "Curini\\Password\\App\\Providers\\AppAuthProvider"
             ]
         }
     },
