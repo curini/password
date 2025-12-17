@@ -123,9 +123,4 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'socialite_redirect' => [
-        'success' => env('APP_SOCIALITE_REDIRECT_SUCCESS', '/dashboard'),
-        'error' => env('APP_SOCIALITE_REDIRECT_ERROR', '/'),
-    ],
-
 ];
