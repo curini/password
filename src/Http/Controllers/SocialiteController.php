@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Curini\Password\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Laravel\Socialite\Socialite;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use Curini\Password\Models\User;
+use App\Http\Controllers\Controller;
 
 class SocialiteController extends Controller
 {
@@ -13,18 +14,18 @@ class SocialiteController extends Controller
     {
         $driver = $request->get('driver');
 
-        if (data_get(config('services'), $driver) && data_get(config('services'), $driver . '.client_id')) {
+        if (data_get(config('password'), $driver) && data_get(config('password'), $driver . '.client_id')) {
             return Socialite::driver($driver)->with(['driver' => $driver])->redirect();
         }
 
-        return redirect(config('app.socialite_redirect.error'));
+        return redirect(config('password.socialite_redirect.error'));
     }
 
     public function callback(Request $request)
     {
         $driver = $request->get('driver');
 
-        if (data_get(config('services'), $driver) && data_get(config('services'), $driver . '.client_id')) {
+        if (data_get(config('password'), $driver) && data_get(config('password'), $driver . '.client_id')) {
             $socialiteUser = Socialite::driver($driver)->user();
 
             $user = User::updateOrCreate([
@@ -38,8 +39,8 @@ class SocialiteController extends Controller
 
             Auth::login($user);
 
-            return redirect(config('app.socialite_redirect.success'));
+            return redirect(config('password.socialite_redirect.success'));
         }
-        return redirect(config('app.socialite_redirect.error'));
+        return redirect(config('password.socialite_redirect.error'));
     }
 }
