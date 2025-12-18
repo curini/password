@@ -20,7 +20,7 @@ class AppAuthProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../../config/password.php' => config_path('password.php'),
+            __DIR__ . '/../../config/socialite.php' => config_path('socialite.php'),
         ], 'password-config');
         $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'socialite');
